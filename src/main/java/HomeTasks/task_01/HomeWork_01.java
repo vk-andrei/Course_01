@@ -1,6 +1,6 @@
 package HomeTasks.task_01;
 
-public class HomeWorkApp {
+public class HomeWork_01 {
     public static void main(String[] args) {
         printThreeWords();
         System.out.println("-----------------------------------");
