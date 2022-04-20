@@ -1,10 +1,13 @@
 package HomeTasks.task_03;
+
 import java.util.Arrays;
-public class HomeWork_03 {
+import java.util.Random;
+
+public class HomeWork_03_task_01_06 {
     public static void main(String[] args) {
 
         System.out.println("TASK 1:");
-        int[] myArr = new int[] {1, 1, 0, 0, 1, 0, 1, 1, 0, 0};
+        int[] myArr = new int[]{1, 1, 0, 0, 1, 0, 1, 1, 0, 0};
         System.out.println("WAS: " + Arrays.toString(myArr));
         for (int i = 0; i < myArr.length; i++) {
             if (myArr[i] == 1) {
@@ -37,9 +40,6 @@ public class HomeWork_03 {
 
         System.out.println("TASK 4:");
         int[][] myArr4 = new int[5][5];
-        for (int[] row : myArr4) {
-            Arrays.fill(row, 9);
-        }
         System.out.println("WAS:");
         for (int[] row : myArr4) {
             System.out.println(Arrays.toString(row));
@@ -58,10 +58,51 @@ public class HomeWork_03 {
         for (int[] row : myArr4) {
             System.out.println(Arrays.toString(row));
         }
+        System.out.println("--------------------");
 
+        System.out.println("TASK 5:");
+        int len = 5;                      // array length
+        int initialValue = 9;             // value of cells
+        System.out.println(Arrays.toString(arrayMaker(len, initialValue)));
+        System.out.println("--------------------");
 
-
-
-
+        System.out.println("TASK 6:");
+        Random ran = new Random();
+        int[] myArr5 = new int[5 + ran.nextInt(16)];   // 5...20
+        for (int i = 0; i < myArr5.length; i++) {
+            myArr5[i] = ran.nextInt(-100, 101);
         }
+        System.out.println(Arrays.toString(myArr5));
+        Arrays.sort(myArr5);
+        System.out.println("Min number: " + myArr5[0]);
+        System.out.println("Max number: " + myArr5[myArr5.length - 1]);
+        System.out.println("--------------------");
+
+        System.out.println("TASK 7:");
+        int[] myArr6 = new int[]{2, 2, 2, 1, 2, 2, 10, 1};
+        System.out.println(checkBalance(myArr6));
+
+
+    }
+
+    private static int[] arrayMaker(int arrayLength, int valueOfCell) {
+        int[] arr = new int[arrayLength];
+        Arrays.fill(arr, valueOfCell);
+        return arr;
+    }
+
+    private static boolean checkBalance(int[] arr) {
+        int sum1 = 0;
+        for (int i = 0; i < arr.length - 1; i++) {
+            sum1 += arr[i];
+            int sum2 = 0;
+            for (int j = i + 1; j < arr.length; j++) {
+                sum2 += arr[j];
+            }
+            System.out.print(sum1 + "   " + sum2);
+            System.out.println();
+            if (sum1 == sum2) return true;
+        }
+        return false;
+    }
 }
