@@ -3,7 +3,7 @@ package HomeTasks.task_03;
 import java.util.Arrays;
 import java.util.Random;
 
-public class HomeWork_03_task_01_06 {
+public class HomeWork_03_task_01_07 {
     public static void main(String[] args) {
 
         System.out.println("TASK 1:");
@@ -81,8 +81,6 @@ public class HomeWork_03_task_01_06 {
         System.out.println("TASK 7:");
         int[] myArr6 = new int[]{2, 2, 2, 1, 2, 2, 10, 1};
         System.out.println(checkBalance(myArr6));
-
-
     }
 
     private static int[] arrayMaker(int arrayLength, int valueOfCell) {
