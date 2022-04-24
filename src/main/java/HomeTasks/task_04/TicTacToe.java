@@ -33,7 +33,6 @@ public class TicTacToe {
         endGame();
     }
 
-
     private static void playGame() {
         while (true) {
 
@@ -51,11 +50,11 @@ public class TicTacToe {
     private static void initGame() {
         turns_counter = 0;
         size = inputFromScanner();
+        SCAN.nextLine();                            // clearing Scanner's buffer
         dots_to_win = chooseDotsToWin(size);
         System.out.println("Get " + dots_to_win + " chips in a line to win.");
         map = new char[size][size];
         initMap();
-
     }
 
     private static int inputFromScanner() {
@@ -113,10 +112,12 @@ public class TicTacToe {
                 Matcher myMatcher = myPattern.matcher(str);
                 checkPattern = myMatcher.matches();
             } while (!checkPattern);
+
             String[] strArr = str.split(" ");
             x = Integer.parseInt(strArr[0]) - 1;
             y = Integer.parseInt(strArr[1]) - 1;
         } while (!isValidCell(x, y));
+
         map[x][y] = DOT_HUMAN;
         lastRow = x;
         lastColomn = y;
@@ -161,7 +162,7 @@ public class TicTacToe {
     }
 
     private static boolean checkWin(char symbol) {
-        return checkWinH(symbol) || checkWinV(symbol) || checkWinD1(symbol); // || checkWinD2();
+        return checkWinH(symbol) || checkWinV(symbol) || checkWinD1(symbol) || checkWinD2(symbol);
     }
 
     private static boolean checkWinH(char symbol) {
@@ -192,33 +193,57 @@ public class TicTacToe {
 
     private static boolean checkWinD1(char symbol) {
         int counter = 0;
-        int startRowDiag1, endRowDiag1;
+        int startRowDiag1;
+        int startColomnDiag1;
 
-        if (lastRow == lastColomn) {                        // провер€ем ровно по диагонали
+        if (lastRow <= lastColomn) {                   // провер€ем в верх правой части пол€ и ровно ƒ»ј√ќЌјЋ№ 1
             startRowDiag1 = 0;
-            for (int i = startRowDiag1; i < size; i++) {
-                if (map[i][i] == symbol) {
+            startColomnDiag1 = lastColomn - lastRow;
+            for (int j = startColomnDiag1; j < size; j++) {
+                if (map[startRowDiag1++][j] == symbol) {
                     counter++;
                 } else {
                     counter = 0;
                 }
                 if (counter == dots_to_win) return true;
             }
-        } else if (lastRow < lastColomn) {                   // провер€ем в верх правой части диагонали
-            startRowDiag1 = 0;
-            for (int i = startRowDiag1; i < size - 1; i++) {
-                if (map[i][i + 1] == symbol) {
-                    counter++;
-                } else {
-                    counter = 0;
-                }
-                if (counter == dots_to_win) return true;
-            }
-        } else {                                             // провер€ем в ниж левой части диагонали
+        } else {                                       // провер€ем в ниж левой части пол€ (lastRow > lastColomn)
             startRowDiag1 = lastRow - lastColomn;
             int j = 0;
             for (int i = startRowDiag1; i < size; i++) {
                 if (map[i][j++] == symbol) {
+                    counter++;
+                } else {
+                    counter = 0;
+                }
+                if (counter == dots_to_win) return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean checkWinD2(char symbol) {
+        int counter = 0;
+        int startRowDiag2;
+        int sumCell = lastColomn + lastRow;
+        int startColDiag2;
+
+        if (sumCell < size) {                 // провер€ем в верх левой части пол€ и ƒ»ј√ќЌјЋ№ 2
+            startRowDiag2 = sumCell;
+            startColDiag2 = 0;
+            for (int i = startRowDiag2; i >= 0; i--) {
+                if (map[i][startColDiag2++] == symbol) {
+                    counter++;
+                } else {
+                    counter = 0;
+                }
+                if (counter == dots_to_win) return true;
+            }
+        } else {                          // провер€ем нижнюю правую часть диагонали  ((sumCell >= size))
+            startRowDiag2 = size - 1;
+            startColDiag2 = sumCell - size + 1;
+            for (int j = startColDiag2; j < size - 1; j++) {
+                if (map[startRowDiag2--][j] == symbol) {
                     counter++;
                 } else {
                     counter = 0;
@@ -242,5 +267,4 @@ public class TicTacToe {
         System.out.println("I hope to see you soon...");
         SCAN.close();
     }
-
 }
