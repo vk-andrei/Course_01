@@ -16,9 +16,7 @@ public class TicTacToe {
     static int turns_counter;
     static int lastRow;
     static int lastColomn;
-
     static final String HEADER_FIRST_SYMBOL = " #";
-
     static final Scanner SCAN = new Scanner(System.in);
     static final Random RAND = new Random();
 
@@ -168,27 +166,16 @@ public class TicTacToe {
     private static boolean checkWinH(char symbol) {
         int counter = 0;
         for (int i = lastRow, j = 0; j < size; j++) {
-
-            if (map[i][j] == symbol) {
-                counter++;
-            } else {
-                counter = 0;
-            }
+            counter = getCounter(symbol, counter, i, j);
             if (counter == dots_to_win) return true;
         }
-
         return false;
     }
 
     private static boolean checkWinV(char symbol) {
         int counter = 0;
         for (int i = 0, j = lastColomn; i < size; i++) {
-
-            if (map[i][j] == symbol) {
-                counter++;
-            } else {
-                counter = 0;
-            }
+            counter = getCounter(symbol, counter, i, j);
             if (counter == dots_to_win) return true;
         }
         return false;
@@ -198,34 +185,21 @@ public class TicTacToe {
         int counter = 0;
         int startRowDiag1;
         int startColomnDiag1;
-
         if (lastRow <= lastColomn) {                   // провер€ем в верх правой части пол€ и ровно ƒ»ј√ќЌјЋ№ 1
             startRowDiag1 = 0;
             startColomnDiag1 = lastColomn - lastRow;
             for (int i = startRowDiag1, j = startColomnDiag1; j < size; i++, j++) {
-
-                if (map[i][j] == symbol) {
-                    counter++;
-                } else {
-                    counter = 0;
-                }
+                counter = getCounter(symbol, counter, i, j);
                 if (counter == dots_to_win) return true;
             }
-
         } else {                                       // провер€ем в ниж левой части пол€ (lastRow > lastColomn)
             startRowDiag1 = lastRow - lastColomn;
             startColomnDiag1 = 0;
             for (int i = startRowDiag1, j = startColomnDiag1; i < size; i++, j++) {
-
-                if (map[i][j] == symbol) {
-                    counter++;
-                } else {
-                    counter = 0;
-                }
+                counter = getCounter(symbol, counter, i, j);
                 if (counter == dots_to_win) return true;
             }
         }
-
         return false;
     }
 
@@ -234,37 +208,31 @@ public class TicTacToe {
         int startRowDiag2;
         int sumCell = lastColomn + lastRow;
         int startColDiag2;
-
         if (sumCell < size) {                 // провер€ем в верх левой части пол€ и ƒ»ј√ќЌјЋ№ 2
             startRowDiag2 = sumCell;
             startColDiag2 = 0;
             for (int i = startRowDiag2, j = startColDiag2; i >= 0; i--, j++) {
-
-                if (map[i][j] == symbol) {
-                    counter++;
-                } else {
-                    counter = 0;
-                }
+                counter = getCounter(symbol, counter, i, j);
                 if (counter == dots_to_win) return true;
-
             }
-
         } else {                          // провер€ем нижнюю правую часть диагонали  (sumCell >= size)
             startRowDiag2 = size - 1;
             startColDiag2 = sumCell - size + 1;
             for (int i = startRowDiag2, j = startColDiag2; j < size - 1; i--, j++) {
-
-                if (map[i][j] == symbol) {
-                    counter++;
-                } else {
-                    counter = 0;
-                }
+                counter = getCounter(symbol, counter, i, j);
                 if (counter == dots_to_win) return true;
             }
-
         }
-
         return false;
+    }
+
+    private static int getCounter(char symbol, int counter, int i, int j) {
+        if (map[i][j] == symbol) {
+            counter++;
+        } else {
+            counter = 0;
+        }
+        return counter;
     }
 
     private static boolean isContinueGame() {
