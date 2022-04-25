@@ -167,21 +167,24 @@ public class TicTacToe {
 
     private static boolean checkWinH(char symbol) {
         int counter = 0;
-        for (char s : map[lastRow]) {
-            if (s == symbol) {
+        for (int i = lastRow, j = 0; j < size; j++) {
+
+            if (map[i][j] == symbol) {
                 counter++;
             } else {
                 counter = 0;
             }
             if (counter == dots_to_win) return true;
         }
+
         return false;
     }
 
     private static boolean checkWinV(char symbol) {
         int counter = 0;
-        for (int i = 0; i < size; i++) {
-            if (map[i][lastColomn] == symbol) {
+        for (int i = 0, j = lastColomn; i < size; i++) {
+
+            if (map[i][j] == symbol) {
                 counter++;
             } else {
                 counter = 0;
@@ -199,19 +202,22 @@ public class TicTacToe {
         if (lastRow <= lastColomn) {                   // провер€ем в верх правой части пол€ и ровно ƒ»ј√ќЌјЋ№ 1
             startRowDiag1 = 0;
             startColomnDiag1 = lastColomn - lastRow;
-            for (int j = startColomnDiag1; j < size; j++) {
-                if (map[startRowDiag1++][j] == symbol) {
+            for (int i = startRowDiag1, j = startColomnDiag1; j < size; i++, j++) {
+
+                if (map[i][j] == symbol) {
                     counter++;
                 } else {
                     counter = 0;
                 }
                 if (counter == dots_to_win) return true;
             }
+
         } else {                                       // провер€ем в ниж левой части пол€ (lastRow > lastColomn)
             startRowDiag1 = lastRow - lastColomn;
-            int j = 0;
-            for (int i = startRowDiag1; i < size; i++) {
-                if (map[i][j++] == symbol) {
+            startColomnDiag1 = 0;
+            for (int i = startRowDiag1, j = startColomnDiag1; i < size; i++, j++) {
+
+                if (map[i][j] == symbol) {
                     counter++;
                 } else {
                     counter = 0;
@@ -219,6 +225,7 @@ public class TicTacToe {
                 if (counter == dots_to_win) return true;
             }
         }
+
         return false;
     }
 
@@ -231,26 +238,32 @@ public class TicTacToe {
         if (sumCell < size) {                 // провер€ем в верх левой части пол€ и ƒ»ј√ќЌјЋ№ 2
             startRowDiag2 = sumCell;
             startColDiag2 = 0;
-            for (int i = startRowDiag2; i >= 0; i--) {
-                if (map[i][startColDiag2++] == symbol) {
+            for (int i = startRowDiag2, j = startColDiag2; i >= 0; i--, j++) {
+
+                if (map[i][j] == symbol) {
                     counter++;
                 } else {
                     counter = 0;
                 }
                 if (counter == dots_to_win) return true;
+
             }
-        } else {                          // провер€ем нижнюю правую часть диагонали  ((sumCell >= size))
+
+        } else {                          // провер€ем нижнюю правую часть диагонали  (sumCell >= size)
             startRowDiag2 = size - 1;
             startColDiag2 = sumCell - size + 1;
-            for (int j = startColDiag2; j < size - 1; j++) {
-                if (map[startRowDiag2--][j] == symbol) {
+            for (int i = startRowDiag2, j = startColDiag2; j < size - 1; i--, j++) {
+
+                if (map[i][j] == symbol) {
                     counter++;
                 } else {
                     counter = 0;
                 }
                 if (counter == dots_to_win) return true;
             }
+
         }
+
         return false;
     }
 
