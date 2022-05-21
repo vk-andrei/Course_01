@@ -1,4 +1,4 @@
-package Lessons.lesson_08.part_02;
+package Lessons.lesson_08_Interfaces.part_02;
 
 public enum Color {
     ORANGE("Рыжий", 3),

@@ -1,4 +1,4 @@
-package Lessons.lesson_08.part_03_Anon_class;
+package Lessons.lesson_08_Interfaces.part_03_Anon_class;
 
 public class Start {
     public static void main(String[] args) {
