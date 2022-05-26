@@ -1,7 +1,7 @@
 package Lessons.lesson_10.generics;
 
 public class GenericStorage<E extends Comparable<? super E>> {
-    private E[] data;
+    private final E[] data;
     private static final int DEFAULT_SIZE = 16;
     private int currentSize;
 

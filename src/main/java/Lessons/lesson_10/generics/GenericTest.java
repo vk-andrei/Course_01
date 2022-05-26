@@ -1,10 +1,5 @@
 package Lessons.lesson_10.generics;
 
-import lesson10.common.ObjectStorage;
-import lesson5.Player;
-
-import java.util.Scanner;
-
 public class GenericTest {
     public static void main(String[] args) {
         /*GenericStorage<Player> playerStorage = new GenericStorage<>(20);
