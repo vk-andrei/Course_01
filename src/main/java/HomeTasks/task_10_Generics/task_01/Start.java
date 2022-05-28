@@ -1,4 +1,6 @@
-package HomeTasks.task_10_Generics;
+package HomeTasks.task_10_Generics.task_01;
+
+import HomeTasks.task_10_Generics.task_01.GenericArray;
 
 public class Start {
     public static void main(String[] args) {

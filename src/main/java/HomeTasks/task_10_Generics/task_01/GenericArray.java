@@ -1,4 +1,4 @@
-package HomeTasks.task_10_Generics;
+package HomeTasks.task_10_Generics.task_01;
 
 public class GenericArray<T> {
     private T[] values;
