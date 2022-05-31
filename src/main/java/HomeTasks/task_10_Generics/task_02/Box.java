@@ -45,15 +45,10 @@ public class Box<T extends Fruits> { // with EXTENDS we begin to see Fruits meth
         fruitsArray[currentSize - 1] = fruit;
     }
 
-    public void remove(T fruit) {
-        currentSize--;
-        fruitsArray = Arrays.copyOf(fruitsArray, currentSize);
-    }
-
-    public void moveTo(Box<T> anyBox) {     //    box1.moveTo(box5);
+    public void moveTo(Box<T> anyBox) {
         for (T t : fruitsArray) {
             anyBox.add(t);
-            this.remove(t);
         }
+        this.fruitsArray = Arrays.copyOf(fruitsArray, 0);  // make box Arr EMPTY
     }
 }
