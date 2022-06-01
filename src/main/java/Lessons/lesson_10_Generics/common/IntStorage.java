@@ -1,45 +1,43 @@
-package Lessons.lesson_10.common;
+package Lessons.lesson_10_Generics.common;
 
-import java.util.Objects;
+public class IntStorage {
 
-public class ObjectStorage {
-
-    private Object[] data;
+    private Integer[] data;
     private static final int DEFAULT_SIZE = 16;
     private int currentSize;
 
-    public ObjectStorage(int size) {
-        this.data = new Object[size];
+    public IntStorage(int size) {
+        this.data = new Integer[size];
         currentSize = 0;
     }
 
-    public ObjectStorage() {
+    public IntStorage() {
         this(DEFAULT_SIZE);
     }
 
-    public void add(Object value) {
+    public void add(Integer value) {
         add(value, currentSize);
     }
 
 
-    public void add(Object value, int index) {
+    public void add(Integer value, int index) {
         data[index] = value;
         currentSize++;
     }
 
     public void display() {
-        for (Object datum : data) {
+        for (Integer datum : data) {
             System.out.print(datum + " ");
         }
         System.out.println();
     }
 
     public void remove(int index) {
-        data[index] = null;
+        data[index] = 0;
         currentSize--;
     }
 
-    public boolean find(Object value) {
+    public boolean find(Integer value) {
         for (int i = 0; i < currentSize; i++) {
             if (value.equals(data[i])) {
                 return true;
@@ -51,16 +49,16 @@ public class ObjectStorage {
     public void sort() {
         for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < data.length - 1 - i; j++) {
-                Comparable a = (Comparable)data[i];
-                Comparable b = (Comparable)data[j];
-                if (a.compareTo(b) > 0) {
+                Integer a = data[i];
+                Integer b = data[j];
+                if (a > b) {
                     exchange(i, j);
                 }
             }
         }
     }
     private void exchange(int i, int j) {
-        Object temp = data[i];
+        Integer temp = data[i];
         data[i] = data[j];
         data[j] = temp;
     }
@@ -69,7 +67,7 @@ public class ObjectStorage {
         return currentSize;
     }
 
-    public Object get(int index) {
+    public int get(int index) {
         return data[index];
     }
 

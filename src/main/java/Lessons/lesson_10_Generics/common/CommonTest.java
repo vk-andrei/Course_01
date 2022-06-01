@@ -1,4 +1,4 @@
-package Lessons.lesson_10.common;
+package Lessons.lesson_10_Generics.common;
 
 import Lessons.lesson_05.Player;
 

@@ -1,4 +1,4 @@
-package Lessons.lesson_10.generics;
+package Lessons.lesson_10_Generics.generics;
 
 
 public class Stats<E extends Number> {

@@ -1,4 +1,4 @@
-package Lessons.lesson_10.test;
+package Lessons.lesson_10_Generics.test;
 
 import java.util.ArrayList;
 
