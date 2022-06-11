@@ -18,6 +18,8 @@ public class Main {
 
         /***** add Barrier *****/
         CyclicBarrier cb = new CyclicBarrier(4);
+        //CyclicBarrier cb_WINNER = new CyclicBarrier(1);
+
         /***** add CountDownLatch *****/
         CountDownLatch cdl_afterPreparing = new CountDownLatch(4);
         CountDownLatch cdl_afterFinish = new CountDownLatch(4);
