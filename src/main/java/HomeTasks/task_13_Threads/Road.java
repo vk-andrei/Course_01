@@ -11,7 +11,7 @@ public class Road extends Stage{
     public void go(Car car) {
         try {
             System.out.println(car.getName() + " begin stage: " + description);
-            Thread.sleep(length / car.getSpeed()* 1000);
+            Thread.sleep(length / car.getSpeed()* 1000L);
             System.out.println(car.getName() + " finished stage: " + description);
         } catch (InterruptedException e) {
             e.printStackTrace();
