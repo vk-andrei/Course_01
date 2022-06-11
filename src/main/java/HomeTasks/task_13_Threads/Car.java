@@ -1,16 +1,18 @@
 package HomeTasks.task_13_Threads;
 
+import java.util.concurrent.CyclicBarrier;
+
 public class Car implements Runnable {
     private static int CARS_COUNT;         // cars_qty?????
     private Race race;
     private int speed;
     private String name;
 
-    private String getName() {
+    public String getName() {
         return name;
     }
 
-    private int getSpeed() {
+    public int getSpeed() {
         return speed;
     }
 
@@ -23,10 +25,12 @@ public class Car implements Runnable {
 
     @Override
     public void run() {
+        CyclicBarrier cb = new CyclicBarrier(4);
         try {
             System.out.println(this.name + " preparing");
             Thread.sleep(500 + (int) (Math.random() * 800));
             System.out.println(this.name + " is ready!");
+            cb.await();
         } catch (Exception e) {
             e.printStackTrace();
         }

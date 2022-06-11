@@ -2,12 +2,11 @@ package HomeTasks.task_13_Threads;
 
 public abstract class Stage {
     protected int length;
-    private String description;
+    protected String description;
 
     public String getDescription() {
         return description;
     }
 
     public abstract void go(Car car);
-
 }
