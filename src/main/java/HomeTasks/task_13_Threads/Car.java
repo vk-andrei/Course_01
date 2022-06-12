@@ -2,7 +2,7 @@ package HomeTasks.task_13_Threads;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.Semaphore;
+import java.util.function.Consumer;
 
 public class Car implements Runnable {
     private static int CARS_COUNT;
@@ -12,7 +12,7 @@ public class Car implements Runnable {
     private CyclicBarrier cb;
     private CountDownLatch cdl_afterPreparing;
     private CountDownLatch cdl_afterFinish;
-    //private Semaphore smp;
+    private Consumer<Car> callback;
 
     public String getName() {
         return name;
@@ -23,14 +23,14 @@ public class Car implements Runnable {
     }
 
     public Car(Race race, int speed, CyclicBarrier cb, CountDownLatch cdl_afterPreparing,
-               CountDownLatch cdl_afterFinish) {
+               CountDownLatch cdl_afterFinish, Consumer<Car> callback) {
         this.race = race;
         this.speed = speed;
         CARS_COUNT++;
         this.cb = cb;
         this.cdl_afterPreparing = cdl_afterPreparing;
         this.cdl_afterFinish = cdl_afterFinish;
-        //this.smp = smp;
+        this.callback = callback;
         this.name = "Participant #" + CARS_COUNT;
     }
 
@@ -47,10 +47,12 @@ public class Car implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         for (int i = 0; i < race.getStages().size(); i++) {
             race.getStages().get(i).go(this);
         }
-        cdl_afterFinish.countDown();
 
+        callback.accept(this);
+        cdl_afterFinish.countDown();
     }
 }
