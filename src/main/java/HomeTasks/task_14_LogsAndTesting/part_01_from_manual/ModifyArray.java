@@ -8,19 +8,18 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ModifyArray {
+
     public static void main(String[] args) {
 
         int[] arr = {2, 5, 4, 100, 1, 4, 5, 6, 0};
-        //int[] arr = {2, 5, 100, 1, 5, 6, 0};
-        System.out.println("WAS: ");
-        System.out.println(Arrays.toString(arr));
 
-        int[] modifyArr = afterLast_4_Array(arr);
-        System.out.println("MODIFY: ");
-        System.out.println(Arrays.toString(modifyArr));
+        ModifyArray modifyArray = new ModifyArray();
+
+        System.out.println(Arrays.toString(modifyArray.afterLast_4_Array(arr)));
+
     }
 
-    private static int[] afterLast_4_Array(int[] arr) {
+    public int[] afterLast_4_Array(int[] arr) {
         /** making List from Array **/
         List<Integer> list = new ArrayList<>(arr.length);
         for (int i : arr) {
