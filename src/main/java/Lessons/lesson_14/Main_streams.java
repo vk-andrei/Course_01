@@ -18,8 +18,5 @@ public class Main_streams {
         System.out.println();
         System.out.println("FIRST LIST: "+ list);
         System.out.println("NEW LIST with strings: " + strings);
-
-
-
     }
 }
