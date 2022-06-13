@@ -1,12 +1,13 @@
-package HomeTasks.task_14_LogsAndTesting;
+package HomeTasks.task_14_LogsAndTesting.part_01_from_manual;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Main {
+public class ModifyArray {
     public static void main(String[] args) {
 
         int[] arr = {2, 5, 4, 100, 1, 4, 5, 6, 0};
@@ -40,18 +41,20 @@ public class Main {
 
         /** Reversing list **/
         Collections.reverse(list);
-        System.out.println(list);
+        //System.out.println("REVERSE list: "+ list);
 
         /** Making STREAM of list **/
         Stream<Integer> Stream = list.stream();
 
         /** New list --> all numbers until we'll see "4" **/
-        List<Integer> listWithout4 = Stream.takeWhile(n -> n != 4).toList();
-        System.out.println(listWithout4);
+        List<Integer> listWithout4 = Stream.takeWhile(n -> n != 4).collect(Collectors.toList());
+        //System.out.println("list without 4: "+ listWithout4);
+
+        /** Reversing list **/
         Collections.reverse(listWithout4);
 
         /** making Array from list **/
-        //return listWithout4.stream().mapToInt(i -> i).toArray();
-        return null;
+
+        return listWithout4.stream().mapToInt(i -> i).toArray();
     }
 }
