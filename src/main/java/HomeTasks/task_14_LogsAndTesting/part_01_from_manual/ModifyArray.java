@@ -18,7 +18,6 @@ public class ModifyArray {
         int[] modifyArr = afterLast_4_Array(arr);
         System.out.println("MODIFY: ");
         System.out.println(Arrays.toString(modifyArr));
-
     }
 
     private static int[] afterLast_4_Array(int[] arr) {
