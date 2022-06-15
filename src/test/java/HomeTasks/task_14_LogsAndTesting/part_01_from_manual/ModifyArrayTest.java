@@ -39,6 +39,8 @@ class ModifyArrayTest {
     public void test3() {
 
         int[] expected = new int[]{1, 7};
-        Assertions.assertArrayEquals(expected, modifyArray.afterLast_4_Array(new int[]{1, 2, 2, 3, 0, 1, 7}));
+        int[] input = new int[] {1, 2, 2, 3, 0, 1, 7};
+        Assertions.assertArrayEquals(expected, modifyArray.afterLast_4_Array(input));
+        //Assertions.assertArrayEquals(expected, modifyArray.afterLast_4_Array(new int[]{1, 2, 2, 3, 0, 1, 7}));
     }
 }
